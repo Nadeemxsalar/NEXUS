@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS | Advanced Bento Ecosystem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #050505;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 255, 234, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(228, 64, 95, 0.08), transparent 25%);
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Bento Grid Layout */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 200px);
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        /* 3D Card Base */
+        .bento-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            cursor: pointer;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d; /* Allows 3D pop-out */
+        }
+
+        /* Neon Glow on Hover */
+        .bento-card:hover {
+            border: 1px solid rgba(0, 255, 234, 0.4);
+            box-shadow: 0 0 30px rgba(0, 255, 234, 0.1);
+        }
+
+        /* Sizing the grid items */
+        .card-main {
+            grid-column: span 2;
+            grid-row: span 2;
+            background: linear-gradient(145deg, rgba(30,41,59,0.8), rgba(15,23,42,0.8));
+        }
+
+        .card-sm {
+            grid-column: span 1;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Typography & Elements */
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(to right, #00FFEA, #38b2ac);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            transform: translateZ(30px); /* 3D text pop */
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #E4405F;
+            margin-bottom: 10px;
+            transform: translateZ(20px);
+        }
+
+        p {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.5;
+            transform: translateZ(15px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            transform: translateZ(25px);
+        }
+
+        /* Decorative glowing dot */
+        .status-dot {
+            height: 10px;
+            width: 10px;
+            background-color: #00FFEA;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #00FFEA, 0 0 20px #00FFEA;
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 234, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 234, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 234, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bento-grid">
+        <div class="bento-card card-main">
+            <div><span class="status-dot"></span><span style="color: #00FFEA; font-weight: bold; letter-spacing: 1px;">SYSTEM ONLINE</span></div>
+            <br>
+            <h1>NEXUS Core</h1>
+            <p>Advanced Multi-Utility Architecture.<br>Powered by seamless full-stack integration and futuristic UI dynamics. Designed for absolute scalability.</p>
+        </div>
+
+        <div class="bento-card card-sm">
+            <h3>Community</h3>
+            <div class="stat-number">78.3K+</div>
+            <p>Active Users</p>
+        </div>
+
+        <div class="bento-card card-sm">
+            <h3>Performance</h3>
+            <div class="stat-number">99.9%</div>
+            <p>Uptime Optimized</p>
+        </div>
+    </div>
+
+    <script>
+        const cards = document.querySelectorAll('.bento-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x position within the element.
+                const y = e.clientY - rect.top;  // y position within the element.
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -15; // Max 15 degree rotation
+                const rotateY = ((x - centerX) / centerX) * 15;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            // Reset animation when mouse leaves
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                card.style.transition = 'transform 0.5s ease';
+            });
+
+            // Remove transition during movement for smooth tracking
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'none';
+            });
+        });
+    </script>
+
+</body>
+</html>
