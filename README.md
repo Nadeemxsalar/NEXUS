@@ -10,7 +10,7 @@ This public space contains standalone UI components, modern Glassmorphism design
 I've made these snippets public so fellow developers and my community can learn, explore, and use these modern web design trends in their own projects.
 
 ### 🚀 Usage
-Feel free to explore the HTML/CSS/JS snippets provided here. If you find these UI designs helpful, don't forget to drop a ⭐ on this repository!
+Feel free to explore the HTML/CSS/JS snippets provided here. If you find these UI designs helpful, don't forget to drop a ⭐ on this repository!!
 
 ---
 *Architected by Nadeem* | *[Visit Main Profile](https://github.com/Nadeemxsalar)*
