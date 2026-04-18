@@ -1,0 +1,1 @@
+module.exports = { content: ["./index.html", "./frontend/**/*.{js,jsx,ts,tsx}"], theme: { extend: { colors: { primary: '#007BFF', secondary: '#6c757d', success: '#28a745', danger: '#dc3545' }, spacing: { '128': '32rem' }, fontFamily: { sans: ['Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'] } } }, plugins: [] }
