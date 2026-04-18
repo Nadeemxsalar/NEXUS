@@ -1,4 +1,4 @@
-# 🌌 NEXUS - UI Concepts & Snippets
+# 🌌 NEXUS - UI Concepts & Snippets.
 
 > **⚠️ SECURITY NOTICE:** This is **NOT** the official core repository of the NEXUS Ecosystem. 
 
